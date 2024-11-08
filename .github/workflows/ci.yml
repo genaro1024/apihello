@@ -34,7 +34,7 @@ jobs:
       # Paso 4: Compilación del proyecto Maven
       - name: Build with Maven
         run: |
-          mvn -B -f /home/runner/work/apihello/pom.xml clean package -DskipTests
+          mvn -B -f /home/runner/work/apihello/apihello/pom.xml clean package -DskipTests
 
       # Paso 5: Análisis de SonarQube
 
