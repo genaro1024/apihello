@@ -1,0 +1,62 @@
+name: Build and Push Docker Image to GHCR
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    environment: dev
+
+    #CI
+
+    steps:
+      # Paso 1: Checkout del código fuente
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      # Paso 2: Configuración de JDK 17 y Maven usando actions/setup-java
+      - name: Set up JDK 17 and Maven
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'  # Versión de Java que deseas usar
+          architecture: 'x64'  # Arquitectura del sistema (opcional, por defecto es x64)
+          distribution: 'temurin' # Distribution Temurin
+
+      # Paso 3: Verificación de la instalación de Java y Maven
+      - name: Verify Java and Maven installation
+        run: |
+          java -version
+          mvn -version
+
+      # Paso 4: Compilación del proyecto Maven
+      - name: Build with Maven
+        run: |
+          mvn -B -f /home/runner/work/apihello/apihello/apihello/pom.xml clean package -DskipTests
+
+      # Paso 5: Análisis de SonarQube
+
+      # Paso 6: Build de la imagen Docker
+      - name: Build Docker Image
+        run: |
+          docker build -t ghcr.io/echotech-sv/xmlapi/xmlapi:latest .
+
+      # Paso 7: Login en GitHub Container Registry
+      - name: Docker Login to GHCR
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      # Paso 8: Subida de la imagen Docker a GHCR
+      - name: Push Docker Image
+        run: |
+          docker push ghcr.io/echotech-sv/xmlapi/xmlapi:latest
+
+      #CD
+
+      # Paso 9: Publicacion en el servidor o un cluster de kubernetes
+
+      # Paso 10: Publicacion en API Management o API Gateway
+
+      # Paso 11: Automatizacion de Pruebas QA
