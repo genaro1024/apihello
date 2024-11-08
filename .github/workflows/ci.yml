@@ -60,3 +60,7 @@ jobs:
       # Paso 10: Publicacion en API Management o API Gateway
 
       # Paso 11: Automatizacion de Pruebas QA 
+
+permissions:
+  packages: write
+  contents: read 
