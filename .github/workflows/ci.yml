@@ -41,7 +41,7 @@ jobs:
       # Paso 6: Build de la imagen Docker
       - name: Build Docker Image
         run: |
-          docker build -t ghcr.io/echotech-sv/xmlapi/xmlapi:latest .
+          docker build -t ghcr.io/genaro1024/apihello/apihello:latest .
 
       # Paso 7: Login en GitHub Container Registry
       - name: Docker Login to GHCR
@@ -51,7 +51,7 @@ jobs:
       # Paso 8: Subida de la imagen Docker a GHCR
       - name: Push Docker Image
         run: |
-          docker push ghcr.io/echotech-sv/xmlapi/xmlapi:latest
+          docker push ghcr.io/genaro1024/apihello/apihello:latest
 
       #CD
 
