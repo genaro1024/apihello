@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @GetMapping("hello")
- 	public ResponseEntity<?> getHello(){
+ 	public ResponseEntity<?> getHello() throws Exception{
 
-
+        
         return ResponseEntity.ok("hello");
+
+        
 
 
     }
