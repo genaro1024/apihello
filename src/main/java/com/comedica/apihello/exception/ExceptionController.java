@@ -33,7 +33,7 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
                                                                   @NonNull HttpHeaders headers,
                                                                   @NonNull HttpStatusCode status,
                                                                   @NonNull WebRequest request) {
-        GenericResponse<String> genericResponse = new GenericResponse<String>();
+        GenericResponse<String> genericResponse = new GenericResponse<>();
         genericResponse.setCode(1);
         genericResponse.setMsg("Error 400 Invalid request body");
         genericResponse.setContent("{}");
@@ -47,7 +47,7 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
                                                                   @NonNull HttpHeaders headers,
                                                                   @NonNull HttpStatusCode status,
                                                                   @NonNull WebRequest request) {
-        GenericResponse<String> genericResponse = new GenericResponse<String>();
+        GenericResponse<String> genericResponse = new GenericResponse<>();
         genericResponse.setCode(1);
         genericResponse.setMsg("Error 400 Validation failed for arguments");
         genericResponse.setContent("{}");
@@ -59,7 +59,7 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
     // 404
     @ExceptionHandler({ ResourceNotFoundException.class})
     protected ResponseEntity<Object> handleNotFound(final Exception ex, final WebRequest request) {
-        GenericResponse<String> genericResponse = new GenericResponse<String>();
+        GenericResponse<String> genericResponse = new GenericResponse<>();
         genericResponse.setCode(1);
         genericResponse.setMsg("Error 404 Resource Not Found");
         genericResponse.setContent("{}");
@@ -71,7 +71,7 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
     // 500
     @ExceptionHandler({ NullPointerException.class, IllegalArgumentException.class, IllegalStateException.class, FileNotFoundException.class, RuntimeException.class })
     public ResponseEntity<Object> handleInternal(final RuntimeException ex, final WebRequest request) {
-        GenericResponse<String> genericResponse = new GenericResponse<String>();
+        GenericResponse<String> genericResponse = new GenericResponse<>();
         genericResponse.setCode(1);
         genericResponse.setMsg("Error 500 An internal error occurred");
         genericResponse.setContent("{}");
@@ -83,7 +83,7 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
     // Catch-all handler for any other exceptions
     @ExceptionHandler({ Exception.class })
     public ResponseEntity<Object> handleAnyException(final Exception ex, final WebRequest request) {
-        GenericResponse<String> genericResponse = new GenericResponse<String>();
+        GenericResponse<String> genericResponse = new GenericResponse<>();
         genericResponse.setCode(1);
         genericResponse.setMsg("Error 500 An unexpected error occurred");
         genericResponse.setContent("{}");
